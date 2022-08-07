@@ -68,3 +68,7 @@ article {
     width: 4rem;
     height: auto;
 }
+
+.resize-text {
+    font-size: 1rem;
+}
