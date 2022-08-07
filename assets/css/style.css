@@ -33,6 +33,10 @@ aside ul {
     justify-content: space-between;
 }
 
+.mainInfo h1 {
+    font-size: 1rem;
+}
+
 .safe {
     padding: 10px;
     border-radius: 6px;
@@ -42,7 +46,7 @@ aside ul {
 .warning {
     padding: 10px;
     border-radius: 6px;
-    background-color: yellow;
+    background-color: hsl(60, 100%, 68%);
 }
 
 .danger {
@@ -57,4 +61,10 @@ article {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+}
+
+.resize {
+    display: flex;
+    width: 4rem;
+    height: auto;
 }
