@@ -14,9 +14,10 @@ var h3_3  = document.querySelector("#h3-3");
 var h3_4  = document.querySelector("#h3-4");
 var h3_5  = document.querySelector("#h3-5");
 
+    //  global variables
 
 function handleSearchFormSubmit(event){
-    event.preventDefault();
+    event.preventDefault(); //  prevent form from reloading page
 
     var city = document.querySelector('#search-input').value;
     if (city){
@@ -27,15 +28,16 @@ function handleSearchFormSubmit(event){
         return handleSearchFormSubmit;
     };
 }
+
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
 function getAPI(city){
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=metric";
     fetch(queryURL)
     .then(function(response){
-        if(response.ok){
+        if(response.ok){    // status 200-299
             storeCity(city);
-            response.json().then(function(data){
+            response.json().then(function(data){        // convert to usable data
                 displayWeather(data, queryURL);
             })
         } else {
@@ -52,18 +54,18 @@ function displayWeather(data, queryURL){
     currentHum.textContent = data.main.humidity + "%";
     currentTemp.textContent = data.main.temp + "°C";
     currentWind.textContent = data.wind.speed + " m/s";
-    var currentCityLat = data.coord.lat;
+    var currentCityLat = data.coord.lat;    //  from first api call
     var currentCityLon = data.coord.lon;
-    var queryOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currentCityLat + "&lon=" + currentCityLon + "&appid=" + APIKey + "&units=metric";
+    var queryOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currentCityLat + "&lon=" + currentCityLon + "&appid=" + APIKey + "&units=metric";   //  second api call
     var icon = document.querySelector("#wicon");
-    var iconCode = data.weather[0].icon;
+    var iconCode = data.weather[0].icon;    //  target icon
     var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
     icon.src = iconURL;
     fetch(queryOneCall)
     .then(function(response){
         response.json().then(function(data2){
             currentUVindex.textContent = data2.current.uvi;
-            if (currentUVindex.textContent < 2){
+            if (currentUVindex.textContent < 2){    //  target css classes to indicate warning colors
                 currentUVindex.classList.remove("warning");
                 currentUVindex.classList.remove("danger");
                 currentUVindex.classList.add("safe");
@@ -144,13 +146,13 @@ function displayWeather(data, queryURL){
 }
 
 function storeCity(city){
-    previousCities.push(city);
+    previousCities.push(city);  //  store list of cities in local storage
     localStorage.setItem("cityArr", JSON.stringify(previousCities));
     displayHistory();
 }
 
 function displayHistory(){
-    historyUl.textContent = '';
+    historyUl.textContent = ''; //  empty list
     var storedArr = JSON.parse(localStorage.getItem("cityArr"));
     for (var i = 0; i < storedArr.length; i++){
         var buttonEl = document.createElement("button");
