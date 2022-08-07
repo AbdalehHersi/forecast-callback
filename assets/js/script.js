@@ -22,7 +22,7 @@ function handleSearchFormSubmit(event){
     var city = document.querySelector('#search-input').value;
     if (city){
         currentCity.textContent = city + " " + currentDate;
-        getAPI(city);
+        getAPI(city, true);
     } else {
         alert("Please enter a city");
         return handleSearchFormSubmit;
@@ -31,12 +31,15 @@ function handleSearchFormSubmit(event){
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
-function getAPI(city){
+function getAPI(city, isStoreCity){
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=metric";
     fetch(queryURL)
     .then(function(response){
         if(response.ok){    // status 200-299
-            storeCity(city);
+            console.log(isStoreCity)
+            if(isStoreCity){
+                storeCity(city);
+            }
             response.json().then(function(data){        // convert to usable data
                 displayWeather(data, queryURL);
             })
@@ -70,7 +73,7 @@ function displayWeather(data, queryURL){
                 currentUVindex.classList.remove("danger");
                 currentUVindex.classList.add("safe");
 
-            } else if (currentUVindex.textContent > 3 && currentUVindex < 7){
+            } else if (currentUVindex.textContent > 3 && currentUVindex.textContent < 7){
                 currentUVindex.classList.remove("safe");
                 currentUVindex.classList.remove("danger");
                 currentUVindex.classList.add("warning");
@@ -163,7 +166,8 @@ function displayHistory(){
     document.querySelectorAll(".btn").forEach(item => {
         item.addEventListener('click', function(){
             var city = this.textContent;
-            getAPI(city);
+            currentCity.textContent = city + " " + currentDate;
+            getAPI(city, false);
         })
       })
 }
