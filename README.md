@@ -9,7 +9,9 @@
 
 [Forecast-callback repository](https://github.com/AbdalehHersi/forecast-callback)
 
-[Deployed page]()
+[Deployed page](https://abdalehhersi.github.io/forecast-callback/)
+
+[Backup link](https://abdalehhersi.github.io/forecast-callback/index.html)
 
 # screenshots of the deployed page
 
