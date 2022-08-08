@@ -32,7 +32,7 @@ function handleSearchFormSubmit(event){
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
 function getAPI(city, isStoreCity){
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=metric";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=metric";
     fetch(queryURL)
     .then(function(response){
         if(response.ok){    // status 200-299
@@ -62,7 +62,7 @@ function displayWeather(data, queryURL){
     var queryOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currentCityLat + "&lon=" + currentCityLon + "&appid=" + APIKey + "&units=metric";   //  second api call
     var icon = document.querySelector("#wicon");
     var iconCode = data.weather[0].icon;    //  target icon
-    var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconURL = "https://openweathermap.org/img/w/" + iconCode + ".png";
     icon.src = iconURL;
     fetch(queryOneCall)
     .then(function(response){
@@ -88,7 +88,7 @@ function displayWeather(data, queryURL){
             h3_1.textContent = moment(data2.daily[1].dt, "X").format("DD-MM-YYYY");
             var icon1 = document.querySelector("#wicon1");
             var iconCode1 = data2.daily[1].weather[0].icon;
-            icon1.src = "http://openweathermap.org/img/w/" + iconCode1 + ".png";
+            icon1.src = "https://openweathermap.org/img/w/" + iconCode1 + ".png";
             var temp0 = document.querySelector("#temp-span0");
             temp0.textContent = data2.daily[1].temp.day + "°C";
             var hum0 = document.querySelector("#hum-span0");
@@ -100,7 +100,7 @@ function displayWeather(data, queryURL){
             h3_2.textContent = moment(data2.daily[2].dt, "X").format("DD-MM-YYYY");
             var icon2 = document.querySelector("#wicon2");
             var iconCode2 = data2.daily[2].weather[0].icon;
-            icon2.src = "http://openweathermap.org/img/w/" + iconCode2 + ".png";
+            icon2.src = "https://openweathermap.org/img/w/" + iconCode2 + ".png";
             var temp1 = document.querySelector("#temp-span1");
             temp1.textContent = data2.daily[2].temp.day + "°C";
             var hum1 = document.querySelector("#hum-span1");
@@ -112,7 +112,7 @@ function displayWeather(data, queryURL){
             h3_3.textContent = moment(data2.daily[3].dt, "X").format("DD-MM-YYYY");
             var icon3 = document.querySelector("#wicon3");
             var iconCode3 = data2.daily[3].weather[0].icon;
-            icon3.src = "http://openweathermap.org/img/w/" + iconCode3 + ".png";
+            icon3.src = "https://openweathermap.org/img/w/" + iconCode3 + ".png";
             var temp2 = document.querySelector("#temp-span2");
             temp2.textContent = data2.daily[3].temp.day + "°C";
             var hum2 = document.querySelector("#hum-span2");
@@ -124,7 +124,7 @@ function displayWeather(data, queryURL){
             h3_4.textContent = moment(data2.daily[4].dt, "X").format("DD-MM-YYYY");
             var icon4 = document.querySelector("#wicon4");
             var iconCode4 = data2.daily[4].weather[0].icon;
-            icon4.src = "http://openweathermap.org/img/w/" + iconCode4 + ".png";
+            icon4.src = "https://openweathermap.org/img/w/" + iconCode4 + ".png";
             var temp3 = document.querySelector("#temp-span3");
             temp3.textContent = data2.daily[4].temp.day + "°C";
             var hum3 = document.querySelector("#hum-span3");
@@ -136,7 +136,7 @@ function displayWeather(data, queryURL){
             h3_5.textContent = moment(data2.daily[5].dt, "X").format("DD-MM-YYYY");
             var icon5 = document.querySelector("#wicon5");
             var iconCode5 = data2.daily[5].weather[0].icon;
-            icon5.src = "http://openweathermap.org/img/w/" + iconCode5 + ".png";
+            icon5.src = "https://openweathermap.org/img/w/" + iconCode5 + ".png";
             var temp4 = document.querySelector("#temp-span4");
             temp4.textContent = data2.daily[5].temp.day + "°C";
             var hum4 = document.querySelector("#hum-span4");
